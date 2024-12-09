@@ -19,8 +19,7 @@ function signUp(){
         localStorage.setItem('Users',JSON.stringify(Users));
         ChangeToSuccess();
     }else{
-        msg.classList.add("d-none");
-        msg.classList.remove("d-block");
+        userExist();
     }
  }
  else{
@@ -43,11 +42,9 @@ function isExist( Newuser ) {
         if((user.name === Newuser.name) && (user.email === Newuser.email) &&(user.pass === Newuser.pass) ){
             return true;
         }
-        else{
-            return false ;
-        }
         
     }
+    return false;
 }
 
 
@@ -69,6 +66,14 @@ function ChangeToSuccess() {
    }
    function ChangeTorequired() {
     msg.innerHTML ="All inputs is required";
+    msg.classList.add("text-danger");
+    msg.classList.remove("text-success");
+    msg.classList.add("d-block");
+    msg.classList.remove("d-none");
+   }
+
+   function userExist() {
+    msg.innerHTML ="email already exists";
     msg.classList.add("text-danger");
     msg.classList.remove("text-success");
     msg.classList.add("d-block");

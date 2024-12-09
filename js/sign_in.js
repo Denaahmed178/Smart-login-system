@@ -11,20 +11,16 @@ function login(){
            email : Useremail.value,
            pass :Userpass.value
         };
-        console.log(user);
-        
-        msg.classList.add("d-none");
+       msg.classList.add("d-none");
        msg.classList.remove("d-block");
        
        if(typeof(isExist(user)) == "number" ){
-        console.log("hi 2");
         Users = JSON.parse(localStorage.getItem('Users'));         
         ChangeToSuccess();
         localStorage.setItem("Userindex",isExist(user));
         window.location.href = "welcome_page.html";
        }else{
-           msg.classList.add("d-none");
-           msg.classList.remove("d-block");
+          incorrectUser();
        }
     }
     else{
@@ -71,6 +67,14 @@ function login(){
    }
    function ChangeTorequired() {
     msg.innerHTML ="All inputs is required";
+    msg.classList.add("text-danger");
+    msg.classList.remove("text-success");
+    msg.classList.add("d-block");
+    msg.classList.remove("d-none");
+   }
+
+   function incorrectUser() {
+    msg.innerHTML ="incorrect email or password";
     msg.classList.add("text-danger");
     msg.classList.remove("text-success");
     msg.classList.add("d-block");
